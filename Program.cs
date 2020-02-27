@@ -55,11 +55,12 @@ namespace SimpleNavalBattle
                 }
 
             }
+            Console.WriteLine();
             Turn();
             int[,] enemyMap1=EnemyMapCreation(mapSize);
             int[,] enemyMap2 = EnemyMapCreation(mapSize);
             int count = 0;
-            bool winner = false;
+            int count1 = 0;
             do
             {
                 Console.Clear();
@@ -70,7 +71,7 @@ namespace SimpleNavalBattle
                 ShowMap(enemyMap1);
                 Console.WriteLine();
                 Shot1();
-                winner=ShipChecking(myMap2);
+                count1=ShipChecking(myMap2);
                 Console.WriteLine();
                 Turn();
                 Console.WriteLine();
@@ -81,11 +82,11 @@ namespace SimpleNavalBattle
                 ShowMap(enemyMap2);
                 Console.WriteLine();
                 Shot2();
-                winner=ShipChecking(myMap1);
+                count1=ShipChecking(myMap1);
                 Console.WriteLine();
                 Turn();
             }
-            while (!winner);
+            while (count1!=0);
             void InitPlayer()
             {
                 Console.WriteLine("Enter your name:");
@@ -297,9 +298,7 @@ namespace SimpleNavalBattle
                     ShowMap(enemyMap1);
                     Console.WriteLine();
                     Console.WriteLine("Good shot!");
-                    Console.WriteLine("Enter coordinates for shooting:");
-                    a = Convert.ToInt32(Console.ReadLine());
-                    b = Convert.ToInt32(Console.ReadLine());
+                    count=ShipChecking(myMap2);
                     Shot1();
                 }
                 else
@@ -339,6 +338,7 @@ namespace SimpleNavalBattle
                     ShowMap(enemyMap2);
                     Console.WriteLine();
                     Console.WriteLine("Good shot!");
+                    count = ShipChecking(myMap1);
                     Shot2();
                 }
                 else
@@ -359,7 +359,7 @@ namespace SimpleNavalBattle
                 while (!result);
 
             }
-            bool ShipChecking(int[,] map)
+            int ShipChecking(int[,] map)
             {
 
                 for (int i = 1; i < map.GetLength(0) - 1; i++)
@@ -372,10 +372,11 @@ namespace SimpleNavalBattle
                 }
                 if (count == 0)
                 {
-                    winner = true;
+                    Console.WriteLine("Congradulate! You are winner!");
                     
                 }
-                return winner;
+                return count;
+                
             }
 
         }
