@@ -219,6 +219,8 @@ namespace SimpleNavalBattle
                 char nextPlayer = Convert.ToChar(Console.ReadLine());
                 if (nextPlayer == '0')
                     Console.Clear();
+                else
+                    Turn();
             }
             void ShowMap(int[,] myMap)
             {
@@ -270,40 +272,49 @@ namespace SimpleNavalBattle
             }  
             void Shot1()
             {
+                
                 Console.WriteLine("Enter coordinates for shooting:");
                 int a = Convert.ToInt32(Console.ReadLine());
                 int b = Convert.ToInt32(Console.ReadLine());
-                if (myMap2[a, b] == 0)
+                if (a > 0 && a < 11 && b > 0 && b < 11)
                 {
-                    myMap2[a, b] = -1;
-                    enemyMap1[a, b] = -1;
-                    Console.Clear();
-                    Console.WriteLine("My Map");
-                    ShowMap(myMap1);
-                    Console.WriteLine();
-                    Console.WriteLine("Enemy Map");
-                    ShowMap(enemyMap1);
-                    Console.WriteLine();
-                    Console.WriteLine("Ooops! Slip-up.");
-                }
-                else if (myMap2[a, b] == 1)
-                {
-                    myMap2[a, b] = 2;
-                    enemyMap1[a, b] = 2;
-                    Console.Clear();
-                    Console.WriteLine("My Map");
-                    ShowMap(myMap1);
-                    Console.WriteLine();
-                    Console.WriteLine("Enemy Map");
-                    ShowMap(enemyMap1);
-                    Console.WriteLine();
-                    Console.WriteLine("Good shot!");
-                    count=ShipChecking(myMap2);
-                    Shot1();
+                    if (myMap2[a, b] == 0)
+                    {
+                        myMap2[a, b] = -1;
+                        enemyMap1[a, b] = -1;
+                        Console.Clear();
+                        Console.WriteLine("My Map");
+                        ShowMap(myMap1);
+                        Console.WriteLine();
+                        Console.WriteLine("Enemy Map");
+                        ShowMap(enemyMap1);
+                        Console.WriteLine();
+                        Console.WriteLine("Ooops! Slip-up.");
+                    }
+                    else if (myMap2[a, b] == 1)
+                    {
+                        myMap2[a, b] = 2;
+                        enemyMap1[a, b] = 2;
+                        Console.Clear();
+                        Console.WriteLine("My Map");
+                        ShowMap(myMap1);
+                        Console.WriteLine();
+                        Console.WriteLine("Enemy Map");
+                        ShowMap(enemyMap1);
+                        Console.WriteLine();
+                        Console.WriteLine("Good shot!");
+                        count = ShipChecking(myMap2);
+                        Shot1();
+                    }
+                    else
+                    {
+                        Console.WriteLine("You've already shooted here, try again.");
+                        Shot1();
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("You've already shooted here, try again.");
+                    Console.WriteLine("Coordinates are not correct!");
                     Shot1();
                 }
 
@@ -313,38 +324,47 @@ namespace SimpleNavalBattle
                 Console.WriteLine("Enter coordinates for shooting:");
                 int a = Convert.ToInt32(Console.ReadLine());
                 int b = Convert.ToInt32(Console.ReadLine());
-                if (myMap1[a, b] == 0)
+                if (a > 0 && a < 11 && b > 0 && b < 11)
                 {
-                    myMap1[a, b] = -1;
-                    enemyMap2[a, b] = -1;
-                    Console.Clear();
-                    Console.WriteLine("My Map");
-                    ShowMap(myMap2);
-                    Console.WriteLine();
-                    Console.WriteLine("Enemy Map");
-                    ShowMap(enemyMap2);
-                    Console.WriteLine();
-                    Console.WriteLine("Ooops! Slip-up.");
-                }
-                else if (myMap1[a, b] == 1)
-                {
-                    myMap1[a, b] = 2;
-                    enemyMap2[a, b] = 2;
-                    Console.Clear();
-                    Console.WriteLine("My Map");
-                    ShowMap(myMap2);
-                    Console.WriteLine();
-                    Console.WriteLine("Enemy Map");
-                    ShowMap(enemyMap2);
-                    Console.WriteLine();
-                    Console.WriteLine("Good shot!");
-                    count = ShipChecking(myMap1);
-                    Shot2();
+                    if (myMap1[a, b] == 0)
+                    {
+                        myMap1[a, b] = -1;
+                        enemyMap2[a, b] = -1;
+                        Console.Clear();
+                        Console.WriteLine("My Map");
+                        ShowMap(myMap2);
+                        Console.WriteLine();
+                        Console.WriteLine("Enemy Map");
+                        ShowMap(enemyMap2);
+                        Console.WriteLine();
+                        Console.WriteLine("Ooops! Slip-up.");
+                    }
+                    else if (myMap1[a, b] == 1)
+                    {
+                        myMap1[a, b] = 2;
+                        enemyMap2[a, b] = 2;
+                        Console.Clear();
+                        Console.WriteLine("My Map");
+                        ShowMap(myMap2);
+                        Console.WriteLine();
+                        Console.WriteLine("Enemy Map");
+                        ShowMap(enemyMap2);
+                        Console.WriteLine();
+                        Console.WriteLine("Good shot!");
+                        count = ShipChecking(myMap1);
+                        Shot2();
+                    }
+                    else
+                    {
+                        Console.WriteLine("You've already shooted here, try again.");
+                        Shot2();
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("You've already shooted here, try again.");
+                    Console.WriteLine("Coordinates are not correct!");
                     Shot2();
+
                 }
 
             }
